@@ -216,7 +216,7 @@ python-versions = "*"
 version = "0.6.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "More routines for operating on iterables, beyond itertools"
 name = "more-itertools"
 optional = false
@@ -540,7 +540,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=3.5,<3.7.3 || >3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pytest-cov", "jaraco.test (>=3.2.0)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "eb06643edc87b00c637bac81e982a32273b1d56dfe8d2bdd3e106a6ac3fd9501"
+content-hash = "70e9a3700f0e71c8a28a1aa9157d56899905ce0686b5c07177512aa3b1c4a9f7"
 python-versions = "^3.7"
 
 [metadata.files]

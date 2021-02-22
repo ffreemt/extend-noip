@@ -14,3 +14,4 @@ six==1.15.0
 tqdm==4.57.0
 urllib3==1.26.3
 websockets==8.1
+more_itertools
