@@ -5,6 +5,7 @@ from typing import Optional, Tuple
 
 import asyncio
 import pyppeteer
+
 # from pyquery import PyQuery as pq
 from logzero import logger
 from extend_noip.fetch_lastupdate import fetch_lastupdate
