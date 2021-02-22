@@ -23,6 +23,7 @@ ipython = "^7.20.0"
 flake8 = "^3.8.4"
 pytest-asyncio = "^0.14.0"
 pep257 = "^0.7.0"
+pylint = "^2.7.0"
 
 [tool.poetry.scripts]
 extend-noip = "extend_noip.__main__:main"

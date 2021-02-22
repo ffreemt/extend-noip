@@ -1,12 +1,11 @@
 """Update a given service."""
 # pylint:
 
-from typing import List, Optional, Tuple
+from typing import Optional, Tuple
 
 import asyncio
-import re
 import pyppeteer
-from pyquery import PyQuery as pq
+# from pyquery import PyQuery as pq
 from logzero import logger
 from extend_noip.fetch_lastupdate import fetch_lastupdate
 
@@ -64,12 +63,20 @@ async def update_service(
         raise SystemExit(1) from exc
 
     try:
-        coros = [handle.click(), page.waitForNaviation()]
-        await asyncio.wait(coros)
+        # coros = [page.waitForSelector(".alert-success"), handle.click(),]
+        # coros = [page.waitForNaviation(), handle.click(),]
+        # await asyncio.gather(*coros)
+        await handle.click()
     except Exception as exc:
         logger.error("%s", exc)
         # raise SystemExit(1) from exc
-        res = res[0], str(exc)
+        res = res[0], res[1] + str(exc)
+    try:
+        await page.waitForSelector(".alert-success")
+    except Exception as exc:
+        logger.error("%s", exc)
+        # raise SystemExit(1) from exc
+        res = res[0], res[1] + str(exc)
 
     # update info after update
     try:

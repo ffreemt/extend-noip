@@ -51,9 +51,11 @@ async def get_ppbrowser(
     elif Path(r"D:\Program Files (x86)\Google\Chrome\Application\chrome.exe").exists():
         executable_path = r"D:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 
+    _ = """
     # devtools = False
     if not headless:  # if headless is False
         devtools = True  # pop devtools, auto headless=False
+    # """
 
     # tempdir = Path("/tmp" if platform.system() == "Darwin" else tempfile.gettempdir())
     # mkdir a random dir for each session

@@ -1,7 +1,7 @@
 """Fetch info on Last Update."""
 # pylint:
 
-from typing import List, Optional, Tuple
+from typing import Optional
 
 import asyncio
 import re
@@ -48,7 +48,7 @@ async def fetch_lastupdate(
     if ip_address is None:
         ip_address = ""
 
-    last_update =  [pq(elm).text() for elm in doc(".form-group") if 'Last Update' in pq(elm).text()]
+    last_update = [pq(elm).text() for elm in doc(".form-group") if 'Last Update' in pq(elm).text()]
     # ['IP Address\nLast Update 2021-02-20 10:16:18 PST']
 
     logger.debug("last update: %s", last_update)

@@ -19,7 +19,7 @@ URL = "https://www.noip.com/members/dns/"
 async def login_noip(
         username: Optional[str] = "",
         password: Optional[str] = "",
-        browser = BROWSER,
+        browser=BROWSER,
 ) -> pyppeteer.page.Page:
     # fmt: on
     """Login to https://www.noip.com/members/dns/.
@@ -62,7 +62,7 @@ async def login_noip(
     # wait for form/submit
     logger.debug("Trying logging in...")
     try:
-        handle = await page.waitForSelector("#clogs", {"timeout": 20000})
+        await page.waitForSelector("#clogs", {"timeout": 20000})
     except TimeoutError:
         logger.error(TimeoutError)
         raise
