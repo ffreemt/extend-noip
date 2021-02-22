@@ -3,6 +3,14 @@
 
 Extend dns expiry date on noip.com
 
+## Automate dns/domain on noip.com
+[中文读我.md](https://github.com/ffreemt/extend-noip/blob/master/读我.md)
+
+*   Fork this repo.
+*   Set the resultant repo `Secrets`: NOIP_USERNAME's value to `your-noip-username/email`, NOIP_PASSWORD's value to `your-noip-password`
+*   [Optionally] Change `crontab` in line 6 of `.github/workflows/schedule-extend-noip.yml` to your like. (This online crontab editor may come handy [https://crontab.guru/#0_0_*/9_*_*](https://crontab.guru/#0_0_*/9_*_*))
+
+
 ## Installtion
 
 ```bash
@@ -127,4 +135,8 @@ poetry install --no-dev
 <!---
 ['158.101.140.77 Last Update 2021-02-22 02:34:45 PST',
  '168.138.222.163 Last Update 2021-02-22 03:40:55 PST']
+
+['158.101.140.77 Last Update 2021-02-22 08:39:49 PST',
+ '168.138.222.163 Last Update 2021-02-22 08:40:01 PST']
+
 --->

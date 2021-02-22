@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "extend-noip"
-version = "0.1.0"
+version = "0.1.1"
 description = "Extend noip dns records for one more month"
 authors = ["freemt"]
 license = "MIT"
