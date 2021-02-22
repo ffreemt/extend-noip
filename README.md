@@ -93,7 +93,7 @@ NOIP_DEBUG=true
 
 ### Automation via Github Actions
 
-It's straightforward to setup `extend-ip` to run via Github Actions.
+It's straightforward to setup `extend-noip` to run via Github Actions, best with an infrequent crontab.
 *   Fork this repo
 *   Setup `Actions secrets` via `Settings/Add repository secrets`:
 
