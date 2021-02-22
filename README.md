@@ -97,7 +97,7 @@ It's straightforward to setup `extend-ip` to run via Github Actions.
 *   Fork this repo
 *   Setup `Actions secrets` via `Settings/Add repository secrets`:
 
----
-NOIP_USERNAME: your_noip_username
-NOIP_PASSWORD: password
----
+|Name | Value |
+|--    | --    |
+|NOIP_USERNAME:| your_noip_username|
+|NOIP_PASSWORD:| your_noip_password |
