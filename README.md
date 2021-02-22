@@ -101,3 +101,24 @@ It's straightforward to setup `extend-noip` to run via Github Actions, best with
 |--    | --    |
 |NOIP_USERNAME:| your_noip_username|
 |NOIP_PASSWORD:| your_noip_password |
+
+For example, in `.github/workflows/schedule-extend-noip.yml`
+```bash
+name: schedule-extend-noip
+
+on:
+  schedule:
+    - cron: '10,40 3 */9 * *'
+...
+setup, e.g. pip install -r requirements.txt or
+poetry install --no-dev
+...
+
+      - name: Testrun
+        env:
+          NOIP_USERNAME: ${{ secrets.NOIP_USERNAME }}
+          NOIP_PASSWORD: ${{ secrets.NOIP_PASSWORD }}
+        run: |
+          python -m extend_noip -d -i
+
+```
