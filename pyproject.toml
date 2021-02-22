@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "extend-noip"
+version = "0.1.0"
+description = "Extend noip dns records for one more month"
+authors = ["freemt"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/ffreemt/extend-noip"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pydantic = {extras = ["dotenv"], version = "^1.7.3"}
+chardet = "^4.0.0"
+logzero = "^1.6.3"
+pyquery = "^1.4.3"
+pyppeteer2 = "^0.2.2"
+absl-py = "^0.11.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+ipython = "^7.20.0"
+flake8 = "^3.8.4"
+pytest-asyncio = "^0.14.0"
+pep257 = "^0.7.0"
+
+[tool.poetry.scripts]
+extend-noip = "extend_noip.__main__:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

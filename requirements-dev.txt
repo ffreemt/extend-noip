@@ -1,0 +1,47 @@
+absl-py==0.11.0
+appdirs==1.4.4
+appnope==0.1.2; sys_platform == "darwin"
+atomicwrites==1.4.0; sys_platform == "win32"
+attrs==20.3.0
+backcall==0.2.0
+chardet==4.0.0
+colorama==0.4.4; sys_platform == "win32"
+cssselect==1.1.0
+decorator==4.4.2
+flake8==3.8.4
+importlib-metadata==3.4.0; python_version < "3.8"
+ipython==7.20.0
+ipython-genutils==0.2.0
+jedi==0.18.0
+logzero==1.6.3
+lxml==4.6.2
+mccabe==0.6.1
+more-itertools==8.7.0
+packaging==20.9
+parso==0.8.1
+pep257==0.7.0
+pexpect==4.8.0; sys_platform != "win32"
+pickleshare==0.7.5
+pluggy==0.13.1
+prompt-toolkit==3.0.16
+ptyprocess==0.7.0; sys_platform != "win32"
+py==1.10.0
+pycodestyle==2.6.0
+pydantic==1.7.3
+pyee==7.0.4
+pyflakes==2.2.0
+pygments==2.8.0
+pyparsing==2.4.7
+pyppeteer2==0.2.2
+pyquery==1.4.3
+pytest==5.4.3
+pytest-asyncio==0.14.0
+python-dotenv==0.15.0
+six==1.15.0
+tqdm==4.57.0
+traitlets==5.0.5
+typing-extensions==3.7.4.3; python_version < "3.8"
+urllib3==1.26.3
+wcwidth==0.2.5
+websockets==8.1
+zipp==3.4.0; python_version < "3.8"

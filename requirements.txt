@@ -1,0 +1,16 @@
+absl-py==0.11.0
+appdirs==1.4.4
+chardet==4.0.0
+colorama==0.4.4; sys_platform == "win32"
+cssselect==1.1.0
+logzero==1.6.3
+lxml==4.6.2
+pydantic==1.7.3
+pyee==7.0.4
+pyppeteer2==0.2.2
+pyquery==1.4.3
+python-dotenv==0.15.0
+six==1.15.0
+tqdm==4.57.0
+urllib3==1.26.3
+websockets==8.1

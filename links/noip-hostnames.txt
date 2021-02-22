@@ -1,0 +1,5 @@
+
+x oracle: ttw.myddns.me
+  coracle:	corsproxy.dns.net
+
+oracle2: ttw.hopto.org
