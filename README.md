@@ -107,6 +107,7 @@ For example, in `.github/workflows/schedule-extend-noip.yml`
 name: schedule-extend-noip
 
 on:
+  push:
   schedule:
     - cron: '10,40 3 */9 * *'
 ...
