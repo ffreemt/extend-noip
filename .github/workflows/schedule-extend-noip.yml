@@ -32,4 +32,4 @@ jobs:
           NOIP_USERNAME: ${{ secrets.NOIP_USERNAME }}
           NOIP_PASSWORD: ${{ secrets.NOIP_PASSWORD }}
         run: |
-          python -m extend_noip -d -i
+          poetry run python -m extend_noip -d -i
