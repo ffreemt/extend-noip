@@ -3,7 +3,7 @@
 
 Extend dns expiry date on noip.com
 
-## Automate dns/domain on noip.com
+## Automate extending dns/domain expiry date on noip.com
 [中文读我.md](https://github.com/ffreemt/extend-noip/blob/master/读我.md)
 
 *   Fork this repo.
