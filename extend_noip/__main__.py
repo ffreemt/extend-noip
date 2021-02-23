@@ -1,4 +1,6 @@
-"""Convert tmx to epub."""
+"""Extend noip dns record expiry date."""
+from time import sleep
+from random import randint
 import logzero
 from logzero import logger
 
@@ -13,8 +15,10 @@ from extend_noip.get_ppbrowser import LOOP
 from extend_noip.login_noip import login_noip
 from extend_noip.fetch_myservices import fetch_myservices
 from extend_noip.fetch_lastupdate import fetch_lastupdate
+from extend_noip.update_service import update_service
+from extend_noip.config import Settings
 
-# from extend_noip.update_service import update_service
+CONFIG = Settings()
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string(
@@ -49,7 +53,7 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
         print("extend_noip %s 20210222, brought to you by mu@qq41947782" % __version__)
         raise SystemExit(0)
 
-    if FLAGS.debug:
+    if FLAGS.debug or CONFIG.debug:
         logzero.loglevel(10)  # logging.DEBUG
     else:
         logzero.loglevel(20)  # logging.INFO
@@ -64,6 +68,11 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
     debug = FLAGS.debug
     if debug:
         logger.debug("\n\t args: %s", [[elm, getattr(FLAGS, elm)] for elm in args])
+
+    # inject a random delay
+    delay = randint(1, 120)
+    logger.info(" Sleeping for %s s", delay)
+    sleep(delay)
 
     try:
         page = LOOP.run_until_complete(login_noip(FLAGS.username, FLAGS.password,))
@@ -105,10 +114,28 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
     if FLAGS.i:
         raise SystemExit(0)
 
-    # attempt to update all
+    # extend dns
+    logger.info("Updating dns records...")
+    up_res = []
+    for link in myservices[1]:
+        if link is not None:
+            # inject a random short delay
+            delay = randint(1, 60)
+            logger.info(" Sleeping yet for another %s s", delay)
+            sleep(delay)
+            try:
+                coro = update_service(link, page)
+                _ = LOOP.run_until_complete(coro)
+            except Exception as exc:
+                logger.error("%s, exc: %s", link, exc)
+                _ = str(exc)
+            up_res.append(_)
+    logger.debug("update servive info: %s", up_res)
+
+    # _ = """  # will take effect in one minute
+    # check update info
     res_up = []
     for link in myservices[1]:
-        # for link in links:
         try:
             coro = fetch_lastupdate(link, page, ip_info=True)
             _ = LOOP.run_until_complete(coro)
@@ -120,6 +147,7 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
 
     pprint("")
     pprint(res_up)
+    # """
 
     # raise SystemExit("quit by intention...")
 
