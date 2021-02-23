@@ -6,9 +6,15 @@ Extend dns expiry date on noip.com
 ## Automate extending dns/domain expiry date on noip.com
 [中文读我.md](https://github.com/ffreemt/extend-noip/blob/master/读我.md)
 
-*   Fork this repo.
-*   Set the resultant repo `Secrets`: NOIP_USERNAME's value to `your-noip-username/email`, NOIP_PASSWORD's value to `your-noip-password`
-*   [Optionally] Change `crontab` in line 6 of `.github/workflows/schedule-extend-noip.yml` to your like. (This online crontab editor may come handy [https://crontab.guru/#0_0_*/9_*_*](https://crontab.guru/#0_0_*/9_*_*))
+*   Fork this repo [https://github.com/ffreemt/extend-noip](https://github.com/ffreemt/extend-noip)
+*   Set the resultant repo `Secrets`
+
+	|Name | Value |
+	|--    | --    |
+	|NOIP_USERNAME:| your_noip_username|
+	|NOIP_PASSWORD:| your_noip_password |
+
+*   [Optionally] Change `crontab` in line 6 of `.github/workflows/schedule-extend-noip.yml`([link](https://github.com/ffreemt/extend-noip/blob/master/.github/workflows/schedule-extend-noip.yml)) to your like. (This online crontab editor may come handy [https://crontab.guru/#0_0_*/9_*_*](https://crontab.guru/#0_0_*/9_*_*))
 
 
 ## Installtion
