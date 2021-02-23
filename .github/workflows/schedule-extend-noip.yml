@@ -3,7 +3,7 @@ name: schedule-extend-noip
 on:
   push:
   schedule:
-    - cron: '10,40 */6 * * *'
+    - cron: '15 21 */9 * *'
 jobs:
   build:
     strategy:
@@ -32,4 +32,4 @@ jobs:
           NOIP_USERNAME: ${{ secrets.NOIP_USERNAME }}
           NOIP_PASSWORD: ${{ secrets.NOIP_PASSWORD }}
         run: |
-          poetry run python -m extend_noip -d
+          poetry run python -m extend_noip
