@@ -92,11 +92,28 @@ async def login_noip(
         # await handle.type('input[name="username"]', username, {"delay": 20})
         # await handle.type('input[name="password"]', password, {"delay": 20})
 
-        bhandle = await page.xpath('//*[@id="clogs"]/button')
-        await bhandle[0].click()
+        # bhandle = await page.xpath('//*[@id="clogs"]/button')
+        # await bhandle[0].click()
     except Exception as exc:
         logger.error("Oh no, exc: %s, exiting", exc)
         raise SystemExit(1)
+
+    # click and waitForNavigation
+    try:
+        bhandle = await page.xpath('//*[@id="clogs"]/button')
+    except Exception as exc:
+        logger.error(exc)
+        raise SystemExit(1)
+    done, pending = await asyncio.gather(
+        bhandle[0].click(),
+        page.waitForNavigation()
+    )
+    for task in done:
+        try:
+            await task
+        except Exception as exc:
+            logger.error(exc)
+            raise
 
     # wait for page to load
     logger.info("Waiting for Dashboard to load...")

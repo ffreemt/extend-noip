@@ -9,6 +9,7 @@ import pyppeteer
 from pyquery import PyQuery as pq
 from logzero import logger
 
+
 # fmt: off
 async def fetch_lastupdate(
         link: Optional[str],
