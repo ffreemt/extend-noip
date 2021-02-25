@@ -29,7 +29,7 @@ jobs:
           NOIP_USERNAME: ${{ secrets.NOIP_USERNAME }}
           NOIP_PASSWORD: ${{ secrets.NOIP_PASSWORD }}
         run: |
-          poetry run python -m extend_noip -s -d
+          poetry run python -m extend_noip -s
           # -d show debug messages
-          # -s turn of short delay (sleepon)
+          # -s turn on short delay (sleepon)
           # -i info only (no attempt to extend)
