@@ -38,6 +38,9 @@ flags.DEFINE_boolean(
     "info", False, "print account info and exit", short_name="i",
 )
 flags.DEFINE_boolean(
+    "sleepon", False, "turn on sleep in two places", short_name="s",
+)
+flags.DEFINE_boolean(
     "debug", False, "print verbose debug messages", short_name="d",
 )
 flags.DEFINE_boolean("version", False, "print version and exit", short_name="V")
@@ -69,15 +72,16 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
     if debug:
         logger.debug("\n\t args: %s", [[elm, getattr(FLAGS, elm)] for elm in args])
 
-    # inject a random delay
-    delay = randint(1, 120)
-    logger.info(" Sleeping for %s s", delay)
-    sleep(delay)
+    if FLAGS.sleepon:
+        # inject a random delay
+        delay = randint(1, 120)
+        logger.info(" Sleeping for %s s", delay)
+        sleep(delay)
 
     try:
-        page = LOOP.run_until_complete(login_noip(FLAGS.username, FLAGS.password,))
+        page = LOOP.run_until_complete(login_noip())
     except Exception as exc:
-        logger.error("login: %s%", exc)
+        logger.error("login: %s", exc)
         logger.error("Unable to login it appears, exiting")
         raise SystemExit(1)
 
@@ -119,10 +123,11 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
     up_res = []
     for link in myservices[1]:
         if link is not None:
-            # inject a random short delay
-            delay = randint(1, 60)
-            logger.info(" Sleeping yet for another %s s", delay)
-            sleep(delay)
+            if FLAGS.sleepon:
+                # inject a random short delay
+                delay = randint(1, 60)
+                logger.info(" Sleeping yet for another %s s", delay)
+                sleep(delay)
             try:
                 coro = update_service(link, page)
                 _ = LOOP.run_until_complete(coro)
