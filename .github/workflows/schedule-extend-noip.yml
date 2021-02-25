@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '15 21 */9 * *'
 jobs:
-  extend-noip.__main__:
+  extend-noip__main__:
     strategy:
       fail-fast: true
       matrix:
