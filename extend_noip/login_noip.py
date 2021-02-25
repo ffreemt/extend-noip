@@ -42,16 +42,28 @@ async def login_noip(
 
     page = await browser.newPage()
 
+    logger.debug("Going to %s", URL)
     try:
-        logger.debug("Going to %s", URL)
         # await page.goto(URL, {"timeout": 20000})
-        await asyncio.wait([
+        done, _ = await asyncio.wait([
             page.goto(URL),
             page.waitForNavigation(),
         ])
     except Exception as exc:
         logger.error(exc)
-        await asyncio.sleep(.2)
+        # await asyncio.sleep(.2)
+        raise
+
+    err_flag = False
+    for task in done:
+        err_flag = False
+        try:
+            await task
+        except Exception as exc:
+            logger.error(exc)
+            err_flag = True
+    if err_flag:
+        raise Exception("err_flag: %s, see previous messages in the log" % err_flag)
 
     _ = """
     # We give it another try
@@ -85,7 +97,7 @@ async def login_noip(
     logger.debug("Logging in with username/email and password")
 
     # wait for form/submit, make sure it's on the right page
-    logger.debug("Trying logging in...")
+    logger.debug("Trying to log in...")
     # form#clogs
     try:
         await page.waitForSelector("#clogs", {"timeout": 20000})
@@ -95,18 +107,26 @@ async def login_noip(
     except Exception as exc:
         logger.error("Unable to fetch the page, network problem or noip has changed page layout, %s, existing", exc)
         raise SystemExit(1) from exc
+    logger.debug("login form found")
 
     try:
-        await page.type('input[name="username"]', username, {"delay": 20000})
-        await page.type('input[name="password"]', password + "\n", {"delay": 20000})
+        await page.type('input[name="username"]', username)
+        # await page.type('input[name="password"]', password + "\n", {"delay": 20000})
         # await handle.type('input[name="username"]', username, {"delay": 20})
         # await handle.type('input[name="password"]', password, {"delay": 20})
 
         # bhandle = await page.xpath('//*[@id="clogs"]/button')
         # await bhandle[0].click()
     except Exception as exc:
-        logger.error("Oh no, exc: %s, exiting", exc)
-        raise SystemExit(1)
+        logger.error("Oh no, page.type username exc: %s, exiting", exc)
+        raise SystemExit(1) from exc
+    try:
+        await page.type('input[name="password"]', password + "\n")
+    except Exception as exc:
+        logger.error("Oh no, page.type password exc: %s, exiting", exc)
+        raise SystemExit(1) from exc
+
+    logger.debug("page.type username/password done ")
 
     # click and waitForNavigation
     _ = """
