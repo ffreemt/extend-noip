@@ -97,8 +97,8 @@ async def login_noip(
         raise SystemExit(1) from exc
 
     try:
-        await page.type('input[name="username"]', username, {"delay": 20})
-        await page.type('input[name="password"]', password  + "\n", {"delay": 20})
+        await page.type('input[name="username"]', username, {"delay": 20000})
+        await page.type('input[name="password"]', password + "\n", {"delay": 20000})
         # await handle.type('input[name="username"]', username, {"delay": 20})
         # await handle.type('input[name="password"]', password, {"delay": 20})
 
