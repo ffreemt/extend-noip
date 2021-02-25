@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '15 21 */9 * *'
 jobs:
-  extend-noip:
+  extend-noip.__main__:
     strategy:
       fail-fast: true
       matrix:
@@ -28,4 +28,4 @@ jobs:
         env:
           NOIP_USERNAME: ${{ secrets.NOIP_USERNAME }}
           NOIP_PASSWORD: ${{ secrets.NOIP_PASSWORD }}
-        run: poetry run python -m extend_noip -s  # -s tunr of short delay (sleepon)
+        run: poetry run python -m extend_noip -i -d  # -s turn of short delay (sleepon)
