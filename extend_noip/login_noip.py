@@ -1,5 +1,5 @@
 """Login to https://www.noip.com/members/dns/."""
-# pylint:
+# pylint: disable=too-many-branches, too-many-statements
 
 from typing import Optional
 
@@ -153,7 +153,7 @@ async def login_noip(
         _ = await page.waitForXPath('//*[contains(text(),"Dashboard")]', {"timeout": 45000})
     except Exception as exc:
         logger.error("No go, exc: %s, exiting", exc)
-        if "incorrect" in (await page.content()):
+        if "incorrect" in await page.content():
             logger.info("""Username / Password combination is incorrect. Please try again.""")
         # raise Exception(str(exc))
         logger.warning("Bad news: we are _not_ in, closing the page")

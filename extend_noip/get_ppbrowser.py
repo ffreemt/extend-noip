@@ -104,4 +104,4 @@ except Exception as exc:
         r"Possible cause: abnormal exit from a previous session. Try `taskkill /f /im chrome.exe`",
     )
     logger.warning(" %s", "Note that this will also kill your chrome browser.")
-    raise SystemExit(1)
+    raise SystemExit(1) from exc

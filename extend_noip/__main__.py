@@ -1,10 +1,12 @@
 """Extend noip dns record expiry date."""
+# pylint: disable=too-many-locals, too-many-statements
+
 from time import sleep
 from random import randint
+from pprint import pprint
 import logzero
 from logzero import logger
 
-from pprint import pprint
 from absl import app, flags
 
 # from tmx2epub.xml_iter import xml_iter
@@ -17,6 +19,7 @@ from extend_noip.fetch_myservices import fetch_myservices
 from extend_noip.fetch_lastupdate import fetch_lastupdate
 from extend_noip.update_service import update_service
 from extend_noip.config import Settings
+from extend_noip import __version__
 
 CONFIG = Settings()
 
@@ -51,8 +54,6 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
     # version = "0.1.0"
 
     if FLAGS.version:
-        from extend_noip import __version__
-
         print("extend_noip %s 20210222, brought to you by mu@qq41947782" % __version__)
         raise SystemExit(0)
 
@@ -70,7 +71,14 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
 
     debug = FLAGS.debug
     if debug:
-        logger.debug("\n\t args: %s", [[elm, getattr(FLAGS, elm)] for elm in args])
+        # [[elm, getattr(FLAGS, elm)] for elm in args]
+        _ = []
+        for elm in args:
+            val = getattr(FLAGS, elm)
+            if elm in ["username", "password"]:
+                val = "*" * len(val)  # mask val
+            _.append([elm, val])
+        logger.debug("\n\t args: %s", _)
 
     if FLAGS.sleepon:
         # inject a random delay
@@ -78,12 +86,14 @@ def proc_argv(_):  # pylint: disable=too-many-branches  # noqa: C901
         logger.info(" Sleeping for %s s", delay)
         sleep(delay)
 
+    username = FLAGS.username
+    password = FLAGS.password
     try:
-        page = LOOP.run_until_complete(login_noip())
+        page = LOOP.run_until_complete(login_noip(username, password))
     except Exception as exc:
         logger.error("login: %s", exc)
         logger.error("Unable to login it appears, exiting")
-        raise SystemExit(1)
+        raise SystemExit(1) from exc
 
     myservices = LOOP.run_until_complete(fetch_myservices(page))
     logger.debug("my services: %s", myservices)

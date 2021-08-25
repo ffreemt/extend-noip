@@ -21,9 +21,8 @@ import tempfile
 import subprocess
 import platform
 
-import chardet
-
 import webbrowser
+import chardet
 
 # from nose.tools import (eq_, with_setup)
 
@@ -103,7 +102,7 @@ def save_tempfile(
         # 'start' only valid in Windows
         platform_ = platform.system()
         if not platform_ == 'Windows':
-            logger.info('Platform is %s, exiting...' % platform_)
+            logger.info('Platform is %s, exiting...', platform_)
             return fpath.__str__()
 
         _ = """
@@ -118,7 +117,7 @@ def save_tempfile(
             os.startfile(str(fpath))  # type: ignore
             return fpath.__str__()
         except Exception as exc:
-            logger.debug('startfile didnt work ...: %s' % exc)
+            logger.debug('startfile didnt work ...: %s', exc)
             logger.info("Trying firefox in C:...")
 
         proc = subprocess.Popen([r"C:\Program Files\Mozilla Firefox\firefox.exe", str(fpath)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)

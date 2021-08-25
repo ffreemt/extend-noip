@@ -29,6 +29,7 @@ pytestmark = pytest.mark.asyncio
 # async def _cleanup():
 def _cleanup():
     import sys
+
     try:
         # LOOP.run_until_complete(BROWSER.close())
         ...
