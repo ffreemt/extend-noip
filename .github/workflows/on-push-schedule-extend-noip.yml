@@ -1,4 +1,4 @@
-name: schedule-extend-noip
+name: on-push-schedule-extend-noip
 
 on:
   push:
