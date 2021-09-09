@@ -14,7 +14,7 @@ Extend dns expiry date on noip.com
 	|NOIP_USERNAME:| your_noip_username|
 	|NOIP_PASSWORD:| your_noip_password |
 
-*   [Optionally] Change `crontab` in line 6 of `.github/workflows/schedule-extend-noip.yml`([link](https://github.com/ffreemt/extend-noip/blob/master/.github/workflows/schedule-extend-noip.yml)) to your like. (This online crontab editor may come handy [https://crontab.guru/#0_0_*/9_*_*](https://crontab.guru/#0_0_*/9_*_*))
+*   [Optionally] Change `crontab` in line 6 of `.github/workflows/on-push-schedule-extend-noip.yml`([link](https://github.com/ffreemt/extend-noip/blob/master/.github/workflows/on-push-schedule-extend-noip.yml)) to your like. (This online crontab editor may come handy [https://crontab.guru/#0_0_*/9_*_*](https://crontab.guru/#0_0_*/9_*_*))
 
 
 ## Installtion
