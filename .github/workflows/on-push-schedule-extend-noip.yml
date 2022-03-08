@@ -33,3 +33,4 @@ jobs:
           # -d show debug messages
           # -s turn on short delay (sleepon)
           # -i info only (no attempt to extend)
+      - uses: gautamkrishnar/keepalive-workflow@master # https://github.com/marketplace/actions/keepalive-workflow
